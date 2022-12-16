@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # display content size using curl
 curl "$1"
 echo " "
