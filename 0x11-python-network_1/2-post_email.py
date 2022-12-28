@@ -1,13 +1,30 @@
 #!/usr/bin/python3
-""" takes in a URL and an email, sends a POST request to the passed URL."""
+'''
+posting data to a server
+'''
 
-import sys
 import urllib.request
+import urllib.parse
+import sys
+
+
+def post_data(url, email):
+    '''
+    function to post data to a given url
+    '''
+    url = url
+    data = {'email': email}
+
+    data = urllib.parse.urlencode(data).encode('ascii')
+
+    req = urllib.request.Request(url, data)
+
+    with urllib.request.urlopen(req) as response:
+        email_info = response.read().decode('utf-8')
+    print(email_info)
+
 
 if __name__ == "__main__":
     url = sys.argv[1]
-    value = {"email": sys.argv[2]}
-    data = urllib.parse.urlencode(value).encode("ascii")
-    request = urllib.request.Request(url, data)
-    with urllib.request.urlopen(request) as response:
-        print(response.read().decode("utf-8"))
+    email = sys.argv[2]
+    post_data(url, email)

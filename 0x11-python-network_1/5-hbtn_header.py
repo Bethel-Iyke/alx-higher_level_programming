@@ -4,7 +4,7 @@ code on how to get X-Request-Id in the header of a url
 and how can i access it in code from the urllib package
 '''
 
-import urllib.request
+import requests
 import sys
 
 
@@ -14,8 +14,8 @@ def get_x_request_id():
     '''
     url = sys.argv[1]
 
-    with urllib.request.urlopen(url) as response:
-        x_request_id = response.getheader('X-Request-Id')
+    response = requests.get(url)
+    x_request_id = response.headers.get('X-request-Id')
     print(x_request_id)
 
 
