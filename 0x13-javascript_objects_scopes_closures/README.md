@@ -1,0 +1,1 @@
+Javascrpt objects and scopes
